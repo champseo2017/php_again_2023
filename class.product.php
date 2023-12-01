@@ -27,4 +27,20 @@ class product {
         $this->name = $name;
     }
 
+    public function info() {
+        $info = '';
+        foreach ( func_get_args() as $arg ) {
+            switch ( $arg ) {
+                case 'id':
+                $info .= $this->id;
+                break;
+                case 'name':
+                $info .= $this->name;
+                break;
+                default:
+                break;
+            }
+        }
+    }
+
 }
