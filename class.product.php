@@ -1,46 +1,24 @@
 <?php
 
+// ใช้ __get(), __set()
+
 class product {
-    private $id;
-    // attribute
-    private $name;
-    // attribute
+    private $data = array();
 
-    public function getId() {
-        // getter method
-        return $this->id;
+    public function __set( $name, $value ) {
+        $this->data[ $name ] = $value;
     }
 
-    public function setId( $id ) {
-        // setter method
-        $this->id = $id;
-    }
-
-    public function getName() {
-        // getter method
-        return $this->name;
-    }
-
-    public function setName( $name ) {
-        // setter method
-        // setter method
-        $this->name = $name;
+    public function __get( $name ) {
+        return $this->data[ $name ];
     }
 
     public function info() {
         $info = '';
-        foreach ( func_get_args() as $arg ) {
-            switch ( $arg ) {
-                case 'id':
-                $info .= $this->id;
-                break;
-                case 'name':
-                $info .= $this->name;
-                break;
-                default:
-                break;
-            }
+        foreach ( $this->data as $data ) {
+            $info .= $data . ' ';
         }
-    }
 
+        return $info;
+    }
 }
