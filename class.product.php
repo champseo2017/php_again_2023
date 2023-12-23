@@ -1,24 +1,21 @@
 <?php
 
-// ใช้ __get(), __set()
+class Product {
+    private $id;
+    private $name;
 
-class product {
-    private $data = array();
-
-    public function __set( $name, $value ) {
-        $this->data[ $name ] = $value;
-    }
-
-    public function __get( $name ) {
-        return $this->data[ $name ];
+    public function __construct($id, $name) {
+        $this->id = $id;
+        $this->name = $name;
     }
 
     public function info() {
-        $info = '';
-        foreach ( $this->data as $data ) {
-            $info .= $data . ' ';
+        $info = "";
+        $lastProperty = end($this); // ตรวจสอบค่าสุดท้ายของ อาร์เรย์ ใช้ฟังก์ชัน end()
+        foreach ($this as $key => $value) {
+           if ($value == $lastProperty) $info .= $value;
+           else $info .= $value . ":";
         }
-
         return $info;
     }
 }
